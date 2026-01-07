@@ -1,0 +1,30 @@
+.container{
+    text-align: center;
+}
+.traffic-box{
+    width: 100px;
+    height: 250px;
+    background-color: black;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 20px;
+}
+.light{
+    width: 70px;
+    height: 70px;
+    margin: 10px auto;
+    border-radius: 50%;
+    opacity: 0.3;
+}
+.red{
+    background-color: red;
+}
+.green{
+    background-color: green;
+}
+.yellow{
+    background-color: yellow;
+}
+.on{
+    opacity: 1;
+}
