@@ -1,88 +1,93 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 function Page1() {
-  const [list,setList] =useState([])
-  const [text,setText] =useState("")
-  const [editId,setEditId] = useState(null)
-  const [status,setStatus] =useState(false);
+  const inputRef = useRef()
+  const [list, setList] = useState([])
+  const [status, setStatus] = useState(false)
+  const [editId, setEditId] = useState(null)
 
-  const handlAddOrEdit=()=>{
-    if(!text.trim())return ;
+  const handleAddOrEdit=()=>{
+    const text=inputRef.current.value
+    if(!text.trim())return;
     if(editId){
       setList(prev=>
         prev.map(item=>
-          item.id===editId ? {...item,text} : item
+          item.id === editId ? {...item,text} : item
         )
       )
+      window.alert("text edited")
       setEditId(null)
     }else{
       setList(prev=>[
-        ...prev,
-        {id:Date.now(),text,deleted :false}
+        ...prev,{id:Date.now(),text,deleted:false}
       ])
+      window.alert("text added")
     }
-    setText("")
+    inputRef.current.value=""
   }
   const handleRemove=(id)=>{
     setList(prev=>
       prev.map(item=>
-        item.id ===id ? {...item,deleted :true} : item
+        item.id === id ? {...item,deleted : true} : item
       )
     )
   }
+
   const handleUndo=(id)=>{
     setList(prev=>
       prev.map(item=>
-        item.id===id ? {...item ,deleted :false} : item
+        item.id ===id ? {...item,deleted:false} : item
       )
     )
   }
   const handleDelete=(id)=>{
-    setList(prev=>
-      prev.filter(item=>item.id !== id)
-    )
+    if(!window.confirm("Are you sure wanna delete ?"))return
+    setList(list.filter(item=>item.id !== id))
+
   }
 
-  const toggleStatus=()=>{
+  const handleStatus=()=>{
     setStatus(prev => !prev)
   }
 
-    const visible=list.filter(item=>
-      status ? item.deleted : !item.deleted
-    )
+  const visible=list.filter(item=>
+    status ? item.deleted : !item.deleted
+  )
+
 
   return (
     <div>
       <h1>TO DO APP</h1>
-    {!status && (
-      <>
-      <input type="text" value={text} onChange={(e)=>setText(e.target.value)} />&nbsp;&nbsp;
-      <button onClick={handlAddOrEdit}>{editId ? "UPDATE" : "ADD"}</button>
-      </>
-    )}
-    <h4>{status ? "DELETED ITEMS" : "ITEMS"}</h4>
-    <button onClick={toggleStatus}>{status ? "ACTIVE" : "DELETED"}</button>
+       {!status &&(
+        <>
+        <input type="text"  ref={inputRef} placeholder='Enter Something...'/>&nbsp;&nbsp;
+        <button onClick={handleAddOrEdit}>{editId ? "UPDATE" : "ADD"}</button>
+        </>
+       )}
+       <h5>{status ? "REMOVED ITEMS" : "ACTIVE ITEMS"}</h5>
+       <button onClick={handleStatus}>{status ? "ACTIVE" : "DELETED"}</button>
 
-    <ul>
-      {visible.map(item=>(
-        <li key={item.id}>
-          <h2>{item.text}</h2>
-          {!item.deleted &&(
-            <>
-            <button onClick={()=>{setText(item.text);setEditId(item.id)}}>EDIT</button>&nbsp;
-            <button onClick={()=>handleRemove(item.id)}>REMOVE</button>
-            </>
-          )}
-
-            {item.deleted &&(
+       <ul>
+        {visible.map(item=>(
+          <li key={item.id}>
+            <h3>{item.text}</h3>
+            {!status &&(
               <>
-              <button onClick={()=>handleUndo(item.id)}>UNDO</button>&nbsp;
+              <button onClick={()=>{inputRef.current.value=item.text ;setEditId(item.id)}}>EDIT</button>&nbsp;&nbsp;
+              <button onClick={()=>handleRemove(item.id)}>REMOVE</button>
+              </>
+            )}
+            {status &&(
+              <>
+              <button onClick={()=>handleUndo(item.id)}>UNDO</button>&nbsp;&nbsp;
               <button onClick={()=>handleDelete(item.id)}>DELETE</button>
               </>
             )}
-        </li>
-      ))}
-    </ul>
+              
+
+          </li>
+        ))}
+       </ul>
     </div>
   )
 }
