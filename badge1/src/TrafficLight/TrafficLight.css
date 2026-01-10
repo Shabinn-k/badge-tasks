@@ -1,7 +1,8 @@
-.container{
+.container {
     text-align: center;
 }
-.traffic-box{
+
+.traffic-box {
     width: 100px;
     height: 245px;
     background: #000;
@@ -9,22 +10,27 @@
     padding: 15px;
     margin: 20px auto;
 }
-.light{
+
+.light {
     width: 75px;
     height: 75px;
     border-radius: 50%;
-    margin:5px auto;
+    margin: 5px auto;
     opacity: 0.3;
 }
-.red{
+
+.red {
     background: red;
 }
-.yellow{
+
+.yellow {
     background: yellow;
 }
-.green{
+
+.green {
     background: green;
 }
-.on{
+
+.on {
     opacity: 2;
 }

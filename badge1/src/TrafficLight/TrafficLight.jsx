@@ -33,7 +33,7 @@ function TrafficLight() {
     },[running,direction])
 
 
-  return (
+  return (  
     <div className='container'>
         <h1>TRAFIC LIGHT</h1>
         <div className="traffic-box">
