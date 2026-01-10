@@ -6,6 +6,7 @@ import Page2 from './components/Page2'
 import Page1 from './components/Page1'
 import {Routes,Route,Link} from "react-router-dom"
 import PropsParent from './props/PropsParent'
+import DropDown from './components/DropDown'
 
 function App() {
 
@@ -16,12 +17,14 @@ function App() {
       <Link to="/fetch"><button>Fetch</button></Link>
       <Link to="/reduxTodo"><button>ReduxTodo</button></Link>
       <Link to="/props"><button>Props</button></Link>
+      <Link to="/drop"><button>Drop down</button></Link>
       <Routes>
       <Route path='/' element={<Page1/>}/>
       <Route path='/traffic' element={<TrafficLight/>}/>
       <Route path='/fetch' element={<Page2/>}/>
       <Route path='/reduxTodo' element={<TodoRedux/>}/>
       <Route path='/props' element={<PropsParent/>}/>
+      <Route path='drop'element={<DropDown/>}/>
       </Routes>
     </div>
   )
