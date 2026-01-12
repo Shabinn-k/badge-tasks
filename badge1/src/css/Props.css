@@ -1,0 +1,25 @@
+.bp-container {
+  min-height: 100vh;
+  padding: 40px 20px;
+   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #fff7cc, #fde68a);
+  color: #78350f;
+}
+
+.bp-title {
+  font-size: 2.6rem;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  color: #92400e;
+}
+
+/* User Cards */
+.bp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 320px;
+}

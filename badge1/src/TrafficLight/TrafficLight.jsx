@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import "./TrafficLight.css";
+import "../css/TrafficLight.css";
+import Snowfall from "react-snowfall";
 
 function TrafficLight() {
     const [light,setLight] = useState("red")
@@ -35,6 +36,7 @@ function TrafficLight() {
 
   return (  
     <div className='container'>
+        <Snowfall color='white'/>
         <h1>TRAFIC LIGHT</h1>
         <div className="traffic-box">
             <div className={`light red ${light === "red" ? "on" : "" }`}></div>

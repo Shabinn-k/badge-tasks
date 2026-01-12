@@ -1,86 +1,127 @@
-import React, { useState, useRef } from 'react'
-
+import React, { useState, useRef } from "react";
+import "../css/Page1.css";
+import Snowfall from "react-snowfall";
 
 const Page1 = () => {
   const inputRef = useRef();
-  const [list, setList] = useState([])
-  const [editId, setEditId] = useState(null)
-  const [status, setStatus] = useState(false)
+  const [list, setList] = useState([]);
+  const [editId, setEditId] = useState(null);
+  const [status, setStatus] = useState(false);
 
   const handleAddOrEdit = () => {
     const text = inputRef.current.value;
     if (!text.trim()) return;
+
     if (editId) {
-      setList(prev =>
-        prev.map(item =>
+      setList((prev) =>
+        prev.map((item) =>
           item.id === editId ? { ...item, text } : item
         )
-      )
-      setEditId(null)
+      );
+      setEditId(null);
     } else {
-      setList(prev => [
+      setList((prev) => [
         ...prev,
-        { id: Date.now(), text, deleted: false }
-      ])
+        { id: Date.now(), text, deleted: false },
+      ]);
     }
-    inputRef.current.value = ""
-  }
+
+    inputRef.current.value = "";
+  };
+
   const handleRemove = (id) => {
-    setList(prev =>
-      prev.map(item => item.id === id ? { ...item, deleted: true } : item)
-    )
-  }
+    setList((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, deleted: true } : item
+      )
+    );
+  };
+
   const handleUndo = (id) => {
-    setList(prev => prev.map(item =>
-      item.id === id ? { ...item, deleted: false } : item
-    ))
-  }
+    setList((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, deleted: false } : item
+      )
+    );
+  };
 
   const handleDelete = (id) => {
-    setList(list.filter(item => item.id !== id))
-  }
+    setList((prev) => prev.filter((item) => item.id !== id));
+  };
 
-  const visible = list.filter(item =>
+  const visible = list.filter((item) =>
     status ? item.deleted : !item.deleted
-  )
-  const handleToggle = () => {
-    setStatus(prev => !prev)
-  }
+  );
 
   return (
-    <div>
-      <h1>TO DO APP</h1>
-      {!status && (
-        <>
-          <input type="text" ref={inputRef} />&nbsp;&nbsp;
-          <button onClick={handleAddOrEdit}>{editId ? "UPDATE" : "ADD"}</button>
-        </>
-      )}
-      <h4>{status ? "DELETED ITEMS" : "ITEMS"}</h4>
-      <button onClick={handleToggle}>{status ? "ACTIVE" : "DELETED"}</button>
+    <div className="todo-container">
+      <Snowfall color="green"/>
+      <h1 className="todo-title">📝 To-Do App</h1>
 
-      <ul>
-        {visible.map(item=>(
-          <li key={item.id}>
-            <h3>{item.text}</h3>
+      {!status && (
+        <div className="todo-input-box">
+          <input ref={inputRef} className="todo-input" />
+          <button className="todo-add-btn" onClick={handleAddOrEdit}>
+            {editId ? "Update" : "Add"}
+          </button>
+        </div>
+      )}
+
+      <div className="todo-header">
+        <h4 className="todo-subtitle">
+          {status ? "Deleted Items" : "Active Items"}
+        </h4>
+        <button className="todo-toggle" onClick={() => setStatus((p) => !p)}>
+          {status ? "Active" : "Deleted"}
+        </button>
+      </div>
+
+      <ul className="todo-list">
+        {visible.map((item) => (
+          <li className="todo-item" key={item.id}>
+            <span className="todo-text">{item.text}</span>
+
             {!status && (
-              <>
-              <button onClick={()=>{inputRef.current.value=item.text;setEditId(item.id)}}>EDIT</button>&nbsp;&nbsp;
-              <button onClick={()=>handleRemove(item.id)}>REMOVE</button>
-              </>
+              <div className="todo-actions">
+                <button
+                  className="todo-edit"
+                  onClick={() => {
+                    inputRef.current.value = item.text;
+                    setEditId(item.id);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="todo-remove"
+                  onClick={() => handleRemove(item.id)}
+                >
+                  Remove
+                </button>
+              </div>
             )}
 
             {status && (
-              <>
-              <button onClick={()=>handleUndo(item.id)}>UNDO</button>&nbsp;&nbsp;
-              <button onClick={()=>handleDelete(item.id)}>DELETE</button>
-              </>
+              <div className="todo-actions">
+                <button
+                  className="todo-undo"
+                  onClick={() => handleUndo(item.id)}
+                >
+                  Undo
+                </button>
+                <button
+                  className="todo-delete"
+                  onClick={() => handleDelete(item.id)}
+                >
+                  Delete
+                </button>
+              </div>
             )}
           </li>
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Page1
+export default Page1;

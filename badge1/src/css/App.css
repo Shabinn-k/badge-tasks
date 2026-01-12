@@ -1,0 +1,41 @@
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  background: #020617;
+  overflow-x: hidden;
+}
+
+
+/* Navbar */
+.app-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 14px 18px;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1e293b;
+}
+
+/* Nav Buttons */
+.nav-btn {
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  color: #e5e7eb;
+  border: 1px solid #334155;
+  transition: 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #6366f1;
+  border-color: #6366f1;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
+}

@@ -1,0 +1,132 @@
+.p2-container {
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: radial-gradient(circle at top, #1f2933, #0b1220);
+  color: #e5e7eb;
+}
+
+.p2-title {
+  font-size: 2.4rem;
+  margin-bottom: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Toggle Button */
+.p2-toggle {
+  background: transparent;
+  border: 1px solid #4f46e5;
+  padding: 10px 26px;
+  border-radius: 30px;
+  color: #c7d2fe;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: 0.35s ease;
+}
+
+.p2-toggle:hover {
+  background: #4f46e5;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
+}
+
+/* Add Box */
+.p2-add-box {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.p2-input,
+.p2-search {
+  width: 240px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid #374151;
+  background: #0f172a;
+  color: #e5e7eb;
+  outline: none;
+  transition: 0.3s;
+}
+
+.p2-input::placeholder,
+.p2-search::placeholder {
+  color: #9ca3af;
+}
+
+.p2-input:focus,
+.p2-search:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.6);
+}
+
+/* Add Button */
+.p2-add-btn {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border: none;
+  padding: 12px 26px;
+  border-radius: 14px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.35s ease;
+}
+
+.p2-add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(99, 102, 241, 0.6);
+}
+
+/* Search */
+.p2-search {
+  margin-bottom: 30px;
+}
+
+/* List */
+.p2-list {
+  list-style: none;
+  padding: 0;
+  width: 360px;
+}
+
+.p2-item {
+  background: linear-gradient(145deg, #0f172a, #020617);
+  border: 1px solid #1e293b;
+  margin-bottom: 14px;
+  padding: 14px 22px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s ease;
+}
+
+.p2-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+.p2-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Delete Button */
+.p2-delete-btn {
+  background: transparent;
+  border: 1px solid #ef4444;
+  padding: 6px 16px;
+  border-radius: 20px;
+  color: #f87171;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.p2-delete-btn:hover {
+  background: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+}
